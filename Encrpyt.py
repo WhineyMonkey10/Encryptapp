@@ -1,29 +1,32 @@
 import os
 from cryptography.fernet import Fernet
 
-files = []
+finalenc = []
+#creates list that will be used to know what to encrypt
 
-folder = input("enter path for your folder here")
+folder = str(input("enter path for your folder here"))
+#defining the directory we want
 
-for file in os.listdir("/Users/raphaelbialystok-joly/Documents/Code/Python/Testencrypt"):
+direc = os.listdir(folder)
+#sets the list of files as a varialbe
+
+
+for file in direc: #loops for all the files in the list
+    print(file)
+
     if file == "Decrypt.py" or file == " Encrypt.py" or file == "README.md" or file == "cryptkey.key":
         continue
-    if os.path.isfile(file):
-        files.appened(file)
-
-print (files) 
-"""        
-print (files)
+    if os.path.isfile(folder):
+        finalenc.appened(file)
 
 key = Fernet.generate_key()
 
 with open("cryptkey.key", "wb") as cryptkey:
     cryptkey.write(key)
     
-for file in files:
+for file in finalenc:
     with open(file, "rb") as thefile:
         contents = thefile.read()
     contents_encrypted = Fernet(key).encrypt(contents)
     with open(file, "wb") as thefile:
         thefile.write(contents_encrypted)
-"""

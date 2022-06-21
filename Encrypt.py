@@ -1,7 +1,7 @@
 import os
 from cryptography.fernet import Fernet
 
-finalenc = []
+
 #creates list that will be used to know what to encrypt
 myfile = open("usrinput.txt")
 folder = myfile.read()
@@ -12,6 +12,9 @@ myfile.close()
 direc = os.listdir(folder)
 
 
+
+    
+
 os.chdir(folder)
 
 for file in direc:
@@ -20,18 +23,41 @@ for file in direc:
     if file == "README.md":
         direc.remove("README.md")     
     if file == "Decrypt.py":
-        direc.remove("Decrypt.py")  
-    if file == "cryptkey.key":
-        direc.remove("cryptkey.key")     
+        direc.remove("Decrypt.py")       
     if file == "gitignore":
         direc.remove("gitignore") 
 
+listlen = len(direc)
+listcheck = 0
+for file in direc:
+    if file == "cryptkey.key":
+        input("it seems that you already have a key would you like to use it? (y/n)")
+        if input == "y":
+            direc.remove("cryptkey.key")
+            continue
+        if input == "n":
+            delete = input("would you like to delete the key and create a new one? (y/n)")
+            if delete == "y":
+                key = Fernet.generate_key()
+                with open("cryptkey.key", "wb") as cryptkey:
+                    cryptkey.write(key)                
+                direc.remove("cryptkey.key")
+                continue
+            if delete == "n":
+                exit()
+    if file != "cryptkey.key":
+        listcheck += 1
+        if listcheck == listlen:
+            print("it apears you have do not have a key, ome will be generated for you")
+            key = Fernet.generate_key()
+            with open("cryptkey.key", "wb") as cryptkey:
+                cryptkey.write(key)
+            direc.remove("cryptkey.key")
+            continue
 
 
-key = Fernet.generate_key()
 
-with open("cryptkey.key", "wb") as cryptkey:
-    cryptkey.write(key)
+
     
     
 for file in direc:

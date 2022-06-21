@@ -33,6 +33,8 @@ for file in direc:
     if file == "cryptkey.key":
         input("it seems that you already have a key would you like to use it? (y/n)")
         if input == "y":
+            with open("cryptkey.key", "rb") as fp:
+                key = fp.read()
             direc.remove("cryptkey.key")
             continue
         if input == "n":

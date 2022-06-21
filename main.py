@@ -1,10 +1,11 @@
-x = input("Folder Path Here")
+x = input("Folder Path Here \n")
 
-with open("usrinput.txt", "w") as f:
+with open("usrinput.txt", "r") as f:
     f.write(x)
 
 
 print("Type 1 in order to Encrypt, 2 in order to Decrypt, 3 to change Path, 4 in order to close")
+
 
 
 def dore():
@@ -27,3 +28,4 @@ def dore():
         print("unvalid input try again")
         dore()
 
+dore()

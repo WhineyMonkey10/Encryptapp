@@ -10,6 +10,7 @@ folder = str(input("enter path for your folder here"))
 direc = os.listdir(folder)
 #sets the list of files as a varialbe
 
+os.chdir(folder)
 
 for file in direc: #loops for all the files in the list
     print(file)
@@ -30,3 +31,4 @@ for file in finalenc:
     contents_encrypted = Fernet(key).encrypt(contents)
     with open(file, "wb") as thefile:
         thefile.write(contents_encrypted)
+        

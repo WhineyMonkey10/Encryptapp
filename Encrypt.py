@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 
 finalenc = []
 #creates list that will be used to know what to encrypt
-myfile = open("example.txt")
+myfile = open("usrinput.txt")
 folder = myfile.read()
 myfile.close()
 

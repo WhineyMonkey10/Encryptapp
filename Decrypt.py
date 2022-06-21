@@ -3,8 +3,10 @@ from cryptography.fernet import Fernet
 
 finalenc = []
 #creates list that will be used to know what to encrypt
+myfile = open("example.txt")
+folder = myfile.read()
+myfile.close()
 
-folder = str(input("enter path for your folder here"))
 #defining the directory we want
 
 direc = os.listdir(folder)
@@ -25,22 +27,17 @@ for file in direc:
         direc.remove("gitignore") 
 
 
-print(direc)
+
 
 with open("cryptkey.key", "rb") as key:
     secretkey = key.read()
 
-sphrase = "decryptme"
-password = input("Enter password to decrypt")
 
-if sphrase == password:
-    for file in direc:
-        print(file)
-        with open(file, "rb") as thefile:
-            contents = thefile.read()
-        contents_decrypted = Fernet(secretkey).decrypt(contents)
-        with open(file, "wb") as thefile:
-            thefile.write(contents_decrypted)
-    print("dubz it got decrypted")
-else:
-    print("better luck next time bozo")
+for file in direc:
+    print(file)
+    with open(file, "rb") as thefile:
+        contents = thefile.read()
+    contents_decrypted = Fernet(secretkey).decrypt(contents)
+    with open(file, "wb") as thefile:
+        thefile.write(contents_decrypted)
+print("dubz it got decrypted")

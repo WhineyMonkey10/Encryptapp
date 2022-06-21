@@ -26,7 +26,7 @@ def dore():
         file = open("usrinput.txt","r+")
         file.truncate(0)
         file.close()
-        y = input("Enter Path here")
+        y = input("Enter Path here \n")
         dore()
     if x == "4":
         filez = open("usrinput.txt","w")
